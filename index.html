@@ -276,7 +276,7 @@
                     shareResult: '分享成绩',
                     copied: '已复制到剪贴板',
                     shareFailed: '分享失败，请手动复制',
-                    shareText: '我正在https://poe.com/pokergrid玩九宫牌，获得了{score}分的好成绩，随机种子是{seed}，你也来和我一起玩吧！',
+                    shareText: '我正在{url}玩九宫牌，获得了{score}分的好成绩，随机种子是{seed}，你也来和我一起玩吧！',
                     comboClearing: '{count}连消除! ({multiplier}倍分数)',
                     patternPoints: '{pattern}! +{points}分',
                     cleared: '消除',
@@ -313,7 +313,7 @@
                     shareResult: '結果をシェア',
                     copied: 'クリップボードにコピーしました',
                     shareFailed: 'シェアに失敗しました、手動でコピーしてください',
-                    shareText: '私はhttps://poe.com/pokergridで九宮牌を{score}点という好成績でプレイしています。ランダムシードは{seed}です。一緒にプレイしませんか！',
+                    shareText: '私は{url}で九宮牌を{score}点という好成績でプレイしています。ランダムシードは{seed}です。一緒にプレイしませんか！',
                     comboClearing: '{count}連続消去! ({multiplier}倍ポイント)',
                     patternPoints: '{pattern}! +{points}点',
                     cleared: '消去',
@@ -350,7 +350,7 @@
                     shareResult: '결과 공유',
                     copied: '클립보드에 복사됨',
                     shareFailed: '공유 실패, 수동으로 복사해주세요',
-                    shareText: '저는 https://poe.com/pokergrid에서 구궁 카드를 플레이하여 {score}점의 좋은 성적을 얻었습니다. 랜덤 시드는 {seed}입니다. 함께 플레이해보세요!',
+                    shareText: '저는 {url}에서 구궁 카드를 플레이하여 {score}점의 좋은 성적을 얻었습니다. 랜덤 시드는 {seed}입니다. 함께 플레이해보세요!',
                     comboClearing: '{count}연속 제거! ({multiplier}배 점수)',
                     patternPoints: '{pattern}! +{points}점',
                     cleared: '제거',
@@ -387,7 +387,7 @@
                     shareResult: 'Share Result',
                     copied: 'Copied to clipboard',
                     shareFailed: 'Share failed, please copy manually',
-                    shareText: 'I\'m playing Grid Poker at https://poe.com/pokergrid with a good score of {score} points. The random seed is {seed}. Come play with me!',
+                    shareText: 'I\'m playing Grid Poker at {url} with a good score of {score} points. The random seed is {seed}. Come play with me!',
                     comboClearing: '{count} patterns cleared! ({multiplier}× points)',
                     patternPoints: '{pattern}! +{points} pts',
                     cleared: 'Cleared',
@@ -424,7 +424,7 @@
                     shareResult: 'Partager résultat',
                     copied: 'Copié dans le presse-papiers',
                     shareFailed: 'Échec du partage, veuillez copier manuellement',
-                    shareText: 'Je joue à Poker Grille sur https://poe.com/pokergrid avec un bon score de {score} points. La graine aléatoire est {seed}. Venez jouer avec moi !',
+                    shareText: 'Je joue à Poker Grille sur {url} avec un bon score de {score} points. La graine aléatoire est {seed}. Venez jouer avec moi !',
                     comboClearing: '{count} motifs éliminés ! (points ×{multiplier})',
                     patternPoints: '{pattern} ! +{points} pts',
                     cleared: 'Éliminé',
@@ -461,7 +461,7 @@
                     shareResult: 'Ergebnis teilen',
                     copied: 'In die Zwischenablage kopiert',
                     shareFailed: 'Teilen fehlgeschlagen, bitte manuell kopieren',
-                    shareText: 'Ich spiele Raster-Poker auf https://poe.com/pokergrid mit einer guten Punktzahl von {score}. Der Zufallsseed ist {seed}. Spiel mit mir!',
+                    shareText: 'Ich spiele Raster-Poker auf {url} mit einer guten Punktzahl von {score}. Der Zufallsseed ist {seed}. Spiel mit mir!',
                     comboClearing: '{count} Muster entfernt! (Punkte ×{multiplier})',
                     patternPoints: '{pattern}! +{points} P',
                     cleared: 'Entfernt',
@@ -498,7 +498,7 @@
                     shareResult: 'Compartir resultado',
                     copied: 'Copiado al portapapeles',
                     shareFailed: 'Error al compartir, por favor copia manualmente',
-                    shareText: 'Estoy jugando Póker de Cuadrícula en https://poe.com/pokergrid con una buena puntuación de {score} puntos. La semilla aleatoria es {seed}. ¡Ven a jugar conmigo!',
+                    shareText: 'Estoy jugando Póker de Cuadrícula en {url} con una buena puntuación de {score} puntos. La semilla aleatoria es {seed}. ¡Ven a jugar conmigo!',
                     comboClearing: '¡{count} patrones eliminados! (puntos ×{multiplier})',
                     patternPoints: '¡{pattern}! +{points} pts',
                     cleared: 'Eliminado',
@@ -535,7 +535,7 @@
                     shareResult: 'Compartilhar resultado',
                     copied: 'Copiado para a área de transferência',
                     shareFailed: 'Falha ao compartilhar, por favor copie manualmente',
-                    shareText: 'Estou jogando Poker de Grade em https://poe.com/pokergrid com uma boa pontuação de {score} pontos. A semente aleatória é {seed}. Venha jogar comigo!',
+                    shareText: 'Estou jogando Poker de Grade em {url} com uma boa pontuação de {score} pontos. A semente aleatória é {seed}. Venha jogar comigo!',
                     comboClearing: '{count} padrões limpos! (pontos ×{multiplier})',
                     patternPoints: '{pattern}! +{points} pts',
                     cleared: 'Limpo',
@@ -1227,7 +1227,24 @@
             
             // Share game with others
             function shareGame() {
-                const shareText = t('shareText', {score: score, seed: currentSeed});
+                // 确定分享URL - 如果当前页面有URL就使用当前页面URL，否则使用默认的poe.com链接
+                let shareUrl = "https://poe.com/PokerGrid";
+                if (window.location.href && window.location.href !== "about:blank") {
+                    // 创建URL对象移除任何现有的查询参数
+                    const url = new URL(window.location.href);
+                    // 移除路径中的查询参数部分
+                    shareUrl = url.origin + url.pathname;
+                }
+                
+                // 添加seed参数
+                shareUrl += "?seed=" + encodeURIComponent(currentSeed);
+                
+                // 使用最终URL创建分享文本
+                const shareText = t('shareText', {
+                    score: score, 
+                    seed: currentSeed,
+                    url: shareUrl
+                });
                 
                 navigator.clipboard.writeText(shareText).then(() => {
                     showToast(t('copied'));
@@ -1373,11 +1390,33 @@
                 }
             }
 
+            // 检查URL中是否包含seed参数
+            function checkURLForSeed() {
+                try {
+                    // 获取URL中的查询参数
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const seedParam = urlParams.get('seed');
+                    
+                    // 如果有种子参数，使用它开始游戏
+                    if (seedParam) {
+                        return seedParam;
+                    }
+                } catch (error) {
+                    console.error("Error parsing URL parameters:", error);
+                }
+                
+                // 如果没有种子参数或出错，返回null以使用随机种子
+                return null;
+            }
+            
             // Initialize game
             function init() {
                 initLanguageSelector();
                 setupEventListeners();
-                startGame();
+                
+                // 检查URL是否包含seed参数
+                const seedFromURL = checkURLForSeed();
+                startGame(seedFromURL);
             }
 
             // Start the game when page loads
