@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/icon.png" />
     <title>九宫牌</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -138,17 +137,13 @@
             </div>
         </div>
         
-        <div class="text-center mb-6">
+        <div class="text-center mb-4">
             <h1 class="text-3xl font-bold mb-2" data-i18n="gameTitle"></h1>
             <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-1" data-i18n="gameDescription"></p>
             <p class="text-xs md:text-sm text-gray-500 dark:text-gray-500 mb-1" data-i18n="comboDescription"></p>
-            <p class="text-sm text-gray-500 dark:text-gray-500">
-                <span data-i18n="remainingCards"></span>: <span id="remaining-cards" class="font-semibold">52</span> | 
-                <span data-i18n="score"></span>: <span id="score" class="font-semibold">0</span>
-            </p>
         </div>
         
-        <!-- Random Seed Display -->
+        <!-- Random Seed Display - 移到上方 -->
         <div class="mb-4 flex justify-center">
             <div class="flex flex-col sm:flex-row items-center text-sm bg-gray-100 dark:bg-gray-800 rounded-lg p-2">
                 <span class="mr-2 mb-1 sm:mb-0" data-i18n="randomSeed"></span>
@@ -162,28 +157,34 @@
         </div>
 
         <!-- Seed Input for Starting Specific Game -->
-        <div class="mb-4 flex justify-center">
+        <div class="mb-3 flex justify-center">
             <div class="flex flex-col sm:flex-row items-center text-sm">
                 <input type="text" id="seed-input" class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 w-full sm:w-auto mb-2 sm:mb-0" data-i18n-placeholder="enterSeed">
                 <button id="start-from-seed" class="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg ml-0 sm:ml-2" data-i18n="start"></button>
             </div>
         </div>
+        
+        <!-- Score Display - 放到下方靠近游戏区域 -->
+        <div class="text-center mb-4">
+            <p class="text-sm text-gray-700 dark:text-gray-300 font-semibold">
+                <span data-i18n="remainingCards"></span>: <span id="remaining-cards" class="font-bold">52</span> | 
+                <span data-i18n="score"></span>: <span id="score" class="font-bold">0</span>
+            </p>
+        </div>
 
         <!-- Game Container with Card Counter -->
-        <div class="flex flex-col md:flex-row mb-6 justify-center items-start gap-4">
-            <!-- Game Playing Area (left) -->
-            <div class="flex flex-col items-center">
+        <div class="flex flex-col md:flex-row mb-6 justify-center items-center md:items-start gap-4">
+            <!-- Game Playing Area (center on mobile, left on desktop) -->
+            <div class="w-full md:w-auto flex flex-col items-center">
                 <!-- Current Card Display -->
-                <div class="mb-6 flex justify-center">
-                    <div class="text-center">
-                        <p class="text-sm mb-2" data-i18n="currentCard"></p>
-                        <div id="current-card" class="card w-16 h-24 md:w-20 md:h-30 mx-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md flex items-center justify-center text-lg md:text-xl font-bold">
-                            <div class="card-inner">
-                                <div class="card-front flex items-center justify-center">
-                                    <span>?</span>
-                                </div>
-                                <div class="card-back"></div>
+                <div class="mb-6 w-full flex flex-col items-center justify-center">
+                    <p class="text-center text-sm mb-2" data-i18n="currentCard"></p>
+                    <div id="current-card" class="card w-16 h-24 md:w-20 md:h-30 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md flex items-center justify-center text-lg md:text-xl font-bold">
+                        <div class="card-inner">
+                            <div class="card-front flex items-center justify-center">
+                                <span>?</span>
                             </div>
+                            <div class="card-back"></div>
                         </div>
                     </div>
                 </div>
@@ -194,11 +195,24 @@
                 </div>
             </div>
             
-            <!-- Card Counter (right) -->
-            <div class="flex-shrink-0 w-full md:w-auto bg-white dark:bg-gray-800 rounded-lg p-3 shadow-md border border-gray-300 dark:border-gray-700">
-                <h3 class="text-sm font-semibold mb-2 text-center text-gray-700 dark:text-gray-300" data-i18n="remainingDeck"></h3>
-                <div id="card-counter" class="grid grid-cols-4 gap-1 text-center">
-                    <!-- Card counter will be dynamically generated here -->
+            <!-- Card Counter (right) - 在小屏幕上默认折叠 -->
+            <div class="md:block flex-shrink-0 w-full md:w-auto md:bg-white md:dark:bg-gray-800 md:rounded-lg md:p-3 md:shadow-md md:border md:border-gray-300 md:dark:border-gray-700">
+                <!-- 移动设备上显示的展开/折叠按钮 -->
+                <div class="flex justify-center md:hidden mb-2">
+                    <button id="toggle-deck" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 py-1 px-4 rounded-lg text-sm flex items-center">
+                        <span id="toggle-deck-text" data-i18n="remainingDeck"></span>
+                        <svg id="toggle-deck-icon" class="w-4 h-4 ml-1 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- 牌组剩余情况内容 - 在移动设备上默认隐藏 -->
+                <div id="deck-content" class="hidden md:block">
+                    <h3 class="text-sm font-semibold mb-2 text-center text-gray-700 dark:text-gray-300 md:block" data-i18n="remainingDeck"></h3>
+                    <div id="card-counter" class="grid grid-cols-4 gap-1 text-center bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md border border-gray-300 dark:border-gray-700 md:p-0 md:shadow-none md:border-0 md:rounded-none">
+                        <!-- Card counter will be dynamically generated here -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -1338,6 +1352,25 @@
                     // 使用相同的种子重新开始游戏
                     startGame(currentSeed);
                 });
+                
+                // 添加牌组剩余情况的展开/折叠切换事件
+                const toggleDeckBtn = document.getElementById('toggle-deck');
+                if (toggleDeckBtn) {
+                    toggleDeckBtn.addEventListener('click', () => {
+                        const deckContent = document.getElementById('deck-content');
+                        const toggleIcon = document.getElementById('toggle-deck-icon');
+                        
+                        if (deckContent.classList.contains('hidden')) {
+                            // 展开显示
+                            deckContent.classList.remove('hidden');
+                            toggleIcon.classList.add('rotate-180');
+                        } else {
+                            // 折叠隐藏
+                            deckContent.classList.add('hidden');
+                            toggleIcon.classList.remove('rotate-180');
+                        }
+                    });
+                }
             }
 
             // Initialize game
