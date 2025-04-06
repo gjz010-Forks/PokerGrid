@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.card-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.card-fade-out {
+  animation: fadeOut 0.3s ease-in-out;
+}
+
+.card {
+  aspect-ratio: 2/3;
+  perspective: 1000px;
+}
+
+.card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-image: repeating-linear-gradient(45deg, rgba(93, 92, 222, 0.1) 0, rgba(93, 92, 222, 0.1) 10px, transparent 10px, transparent 20px);
+}
+
+.dark .card-back {
+  background-image: repeating-linear-gradient(45deg, rgba(93, 92, 222, 0.2) 0, rgba(93, 92, 222, 0.2) 10px, transparent 10px, transparent 20px);
+}
+
+/* 花色颜色定义 */
+.heart {
+  color: #E53E3E;
+  /* 红色 */
+}
+
+.dark .heart {
+  color: #FC8181;
+  /* 深色模式下的红色 */
+}
+
+.diamond {
+  color: #ED8936;
+  /* 橙色 */
+}
+
+.dark .diamond {
+  color: #F6AD55;
+  /* 深色模式下的橙色 */
+}
+
+.spade {
+  color: #805AD5;
+  /* 紫色 */
+}
+
+.dark .spade {
+  color: #9F7AEA;
+  /* 深色模式下的紫色 */
+}
+
+.club {
+  color: #2D3748;
+  /* 深灰色/黑色 */
+}
+
+.dark .club {
+  color: #E2E8F0;
+  /* 深色模式下的灰白色 */
+}
+
+/* Ensure all inputs have at least 16px font size on mobile */
+@media (max-width: 768px) {
+
+  input,
+  button,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Disable text selection for the game interface */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Re-enable text selection for input elements */
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
